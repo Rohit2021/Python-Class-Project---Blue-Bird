@@ -97,7 +97,7 @@ def header():
               ██████╔╝███████╗╚██████╔╝███████╗    ██████╔╝██║██║  ██║██████╔╝
               ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝    ╚═════╝ ╚═╝╚═╝  ╚═╝╚═════╝ """)
 
-def create_account(conn):    #informs server that there is a need to create a new account
+def create_account():    #informs server that there is a need to create a new account
     s.send(login.encode())
     cls2()
     set_name = input(str("\nSet Username: "))
