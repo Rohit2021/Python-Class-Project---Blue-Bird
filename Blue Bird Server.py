@@ -157,7 +157,6 @@ def login(s_name, s_password):
         username_data = sheet.cell(row = i + 1,column=2).value
         password_data = sheet.cell(row = i + 1,column=3).value  
         if (s_password == password_data and s_name == username_data):
-            xfile.save('Users.xlsx')
             return 1
             break
             
@@ -204,16 +203,120 @@ def message(conn):         #expands on the message command by asking the user wh
     conn.send(response.encode('utf-8'))
     console(conn)   #returns user to console function
 
-def view_profile():
-    print("Placeholder\n")
+def view_profile(conn, s_name):
+    xfile = openpyxl.load_workbook('Users.xlsx')
+    sheet = xfile.get_sheet_by_name('Sheet1')
+    for i in range(1000):
+        username_data = sheet.cell(row = i + 1,column=2).value
+        if (s_name == username_data):
+            message = str(("start print_profile"))
+            conn.send(message.encode())
+            
+            username = sheet.cell(row=i + 1, column=2).value
+            username = str(username)
+            conn.send(username.encode()) 
+            
+            password = sheet.cell(row=i + 1, column=3).value
+            password = str(password)
+            conn.send(password.encode())
+            
+            fname = sheet.cell(row=i + 1, column=4).value
+            fname = str(fname)
+            conn.send(fname.encode())
+            
+            lname = sheet.cell(row=i + 1, column=5).value
+            lname = str(lname)
+            conn.send(lname.encode())
+            
+            gender = sheet.cell(row=i + 1, column=6).value
+            gender = str(gender)
+            conn.send(gender.encode())
+            
+            interest = sheet.cell(row=i + 1, column=7).value
+            interest = str(interest)
+            conn.send(interest.encode())
+            
+            age = sheet.cell(row=i + 1, column=8).value
+            age = str(age)
+            conn.send(age.encode()) 
+            
+            child = sheet.cell(row=i + 1, column=9).value
+            child = str(child)
+            conn.send(child.encode())
+            
+            ethnic = sheet.cell(row=i + 1, column=10).value
+            ethnic = str(ethnic)
+            conn.send(ethnic.encode())
+            
+            religion = sheet.cell(row=i + 1, column=11).value
+            religion = str(religion)
+            conn.send(religion.encode())
+            
+            school = sheet.cell(row=i + 1, column=12).value
+            school = str(school)
+            conn.send(school.encode())
+            
+            career = sheet.cell(row=i + 1, column=13).value
+            career = str(career)
+            conn.send(career.encode())
+            
+            sports = sheet.cell(row=i + 1, column=14).value
+            sports = str(sports)   
+            conn.send(sports.encode())
+            
+            football = sheet.cell(row=i + 1, column=15).value
+            football = str(football)
+            conn.send(football.encode())
+            
+            baseball = sheet.cell(row=i + 1, column=16).value
+            baseball = str(baseball)
+            conn.send(baseball.encode())
+            
+            basketball = sheet.cell(row=i + 1, column=17).value
+            basketball = str(basketball)
+            conn.send(basketball.encode())
+            
+            soccer = sheet.cell(row=i + 1, column=18).value
+            soccer = str(soccer)
+            conn.send(soccer.encode())
+            
+            other = sheet.cell(row=i + 1, column=19).value
+            other = str(other)
+            conn.send(other.encode())
+            
+            movies = sheet.cell(row=i + 1, column=20).value
+            movies = str(movies)
+            conn.send(movies.encode())
+            
+            music = sheet.cell(row=i + 1, column=21).value
+            music = str(music)
+            conn.send(music.encode())
+            
+            dance = sheet.cell(row=i + 1, column=22).value
+            dance = str(dance)
+            conn.send(dance.encode())
+            
+            social = sheet.cell(row=i + 1, column=23).value
+            social = str(social)
+            conn.send(social.encode())
+            
+            reading = sheet.cell(row=i + 1, column=24).value
+            reading = str(reading)
+            conn.send(reading.encode())
+            
+            bio =sheet.cell(row=i + 1, column=25).value
+            bio = str(bio)
+            conn.send(bio.encode())
 
-def console(conn):      #Allows clients to enter in one of two commands, list and message
+            break
+    
+def console(conn, s_name):      #Allows clients to enter in one of two commands, list and message
     while True:
         incoming_message = conn.recv(1024) 
         incoming_message = incoming_message.decode()
 
         if incoming_message == "1":
-            view_profile()
+            view_profile(conn, s_name)
         #if incoming_message == "2":
 
         #if incoming_message == "3":
@@ -249,7 +352,7 @@ def clientthread(conn):   #Takes the name of the newly entered client
         if (validate_login == 1):
             Names.append(s_name) 
             print(s_name," has joined")
-            console(conn)
+            console(conn, s_name)
 
         #alert = ("... Successfully Connected to SERN")
         #conn.send(alert.encode('utf-8'))
