@@ -10,9 +10,16 @@ import subprocess
 time.sleep(1)
 s = socket.socket()         #Defines Socket
 host = "127.0.0.1"
-print("BLUE BIRD\n")
 port = 9000
 s.connect((host,port))
+
+def header():
+    print("""             ██████╗ ██╗     ██╗   ██╗███████╗    ██████╗ ██╗██████╗ ██████╗ 
+             ██╔══██╗██║     ██║   ██║██╔════╝    ██╔══██╗██║██╔══██╗██╔══██╗ 
+             ██████╔╝██║     ██║   ██║█████╗      ██████╔╝██║██████╔╝██║  ██║
+             ██╔══██╗██║     ██║   ██║██╔══╝      ██╔══██╗██║██╔══██╗██║  ██║
+             ██████╔╝███████╗╚██████╔╝███████╗    ██████╔╝██║██║  ██║██████╔╝
+             ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝    ╚═════╝ ╚═╝╚═╝  ╚═╝╚═════╝ """)
 
 def create_account():    #informs server that there is a need to create a new account
     s.send(login.encode())
@@ -37,9 +44,11 @@ def create_account():    #informs server that there is a need to create a new ac
 def do_not_create_account():    #informs server that there is no need to create a new account
     s.send(login.encode())
 
-def login_info():
+def login_retry():
+    print ("Invalid username or password\n")
     name = input(str("\nUsername: "))
     password = input(str("\nPassword: "))
+    send_name()
    
 def send_name():
     s.send(name.encode())   #sends name to server
@@ -61,7 +70,13 @@ def outMessage():           #Constantly allows for messages to be sent from clie
         print("\n")
         s.send(message)
 
-login = input(str("Welcome - Create a new account(Enter '1'): "))
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+    header()
+    print("\n   MY PROFILE('1')      MESSAGES('2')      MATCH ME('3')      SEARCH('4')      OPTIONS('5)\n");
+
+header()
+login = input(str("\nWelcome - Create a new account(Enter '1'): "))
 if (login == "1"):
      create_account()
 else:
@@ -74,6 +89,8 @@ t1 = threading.Thread(target=outMessage,)
 t2 = threading.Thread(target=inMessage,)
 
 send_name()
+cls()
+
 t1.start() 
 t2.start() 
   
