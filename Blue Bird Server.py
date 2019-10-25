@@ -40,6 +40,7 @@ def bind_socket():      #binds socket
 
 create_socket()
 bind_socket()
+    
 
 def create_new_account(conn):
     incoming_username = conn.recv(1024) 
@@ -116,7 +117,7 @@ def create_new_account(conn):
 
     xfile = openpyxl.load_workbook('Users.xlsx')
     sheet = xfile.get_sheet_by_name('Sheet1')
-
+    print("\n\n\n\gupaaa")
     for i in range(1000):
         first = sheet.cell(row = i + 1,column=1).value
         if (first != 1):
@@ -211,7 +212,7 @@ def view_profile(conn, s_name):
         if (s_name == username_data):
             message = str(("start print_profile"))
             conn.send(message.encode())
-            
+            time.sleep(.00001)
             username = sheet.cell(row=i + 1, column=2).value
             username = str(username)
             conn.send(username.encode()) 
@@ -307,10 +308,34 @@ def view_profile(conn, s_name):
             bio =sheet.cell(row=i + 1, column=25).value
             bio = str(bio)
             conn.send(bio.encode())
+            time.sleep(.00001)
 
             break
+
+def search(conn):
+    message = str(("start search function"))
+    conn.send(message.encode())
+    username = conn.recv(1024) 
+    username = username.decode() #receives username
+    xfile = openpyxl.load_workbook('Users.xlsx')
+    sheet = xfile.get_sheet_by_name('Sheet1')
+    count = 0
+    for i in range(1000):
+        username_data = sheet.cell(row = i + 1,column=2).value 
+        if (username == username_data):
+            count = 1
+            message = str(("valid"))
+            conn.send(message.encode())
+            time.sleep(.00001)
+            view_profile(conn, username)
+            break
+
+    if (count == 0):
+        message = str(("invalid"))
+        conn.send(message.encode())
     
-def console(conn, s_name):      #Allows clients to enter in one of two commands, list and message
+    
+def console(conn, s_name):      #Allows clients to enter in commands to navigate interface
     while True:
         incoming_message = conn.recv(1024) 
         incoming_message = incoming_message.decode()
@@ -321,7 +346,8 @@ def console(conn, s_name):      #Allows clients to enter in one of two commands,
 
         #if incoming_message == "3":
         
-        #if incoming_message == "4":
+        if incoming_message == "4":
+            search(conn)
 
         #if incoming_message == "5":
         
@@ -354,7 +380,6 @@ def clientthread(conn):   #Takes the name of the newly entered client
             print(s_name," has joined")
             console(conn, s_name)
 
-        #alert = ("... Successfully Connected to SERN")
         #conn.send(alert.encode('utf-8'))
         #print(Names[x],"'s connection point is ", Clients[x])
         

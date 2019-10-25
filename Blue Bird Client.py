@@ -13,6 +13,23 @@ host = "127.0.0.1"
 port = 9000
 s.connect((host,port))
 
+def search():
+    cls3()
+    username = input(str("Enter a username: "))
+    username = username.encode()
+    print("\n\n")
+    s.send(username)
+    incoming_message = s.recv(1024)
+    incoming_message = incoming_message.decode()
+    if (incoming_message == "valid"):
+        incoming_message = s.recv(1024)
+        incoming_message = incoming_message.decode()
+        print_profile()
+    else:
+        print("\nInvalid Username(Hit Any Key To Exit)")
+    exit = input(str(""))
+    
+    
 def print_profile():
     incoming_username = s.recv(1024) 
     incoming_username = incoming_username.decode()
@@ -168,7 +185,7 @@ def print_profile():
     else:
         print("* Enjoys Reading?: No")
 
-    print("\nGeneral Bio:", incoming_bio, "\nEnter Any Key To Exit!")
+    print("\nGeneral Bio:", incoming_bio, "\n\n(Enter Any Key To Exit)")
     exit = input(str(""))
     
 def header():
@@ -222,12 +239,12 @@ def create_account():    #informs server that there is a need to create a new ac
     s.send(set_child)
 
     cls2()
-    set_ethnic = input(str("\nWhat's your ethnic background? Examples: Caucasian, African-American, Asian, etc : "))
+    set_ethnic = input(str("\nWhat's your ethnic background? \nExamples: Caucasian, African-American, Asian, etc : "))
     set_ethnic = set_ethnic.encode()
     s.send(set_ethnic)
 
     cls2()
-    set_religion = input(str("\nWhat's your religion? : "))
+    set_religion = input(str("\nWhat's your religion? \nExamples: Christianity, Islam, Hinduism, Atheism, etc: "))
     set_religion = set_religion.encode()
     s.send(set_religion)
 
@@ -323,6 +340,9 @@ def inMessage():
         if (incoming_message == "start print_profile"):
             print_profile()
             cls()
+        elif (incoming_message == "start search function"):
+            search()
+            cls()
         else:
             print(incoming_message,"\n")
 
@@ -344,9 +364,10 @@ def cls2():  #only for the create account function
     header()
     print("\n                                  Account Creation Menu\n")
 
-def cls3():  #for profile function
-    os.system('cls' if os.name=='nt' else 'clear')
+def cls3():  
+    os.system('cls' if os.name=='nt' else 'clear') #only for search function
     header()
+    print("\n                          Search By Username(Hit Any Key To Start)")
 
     
 header()
