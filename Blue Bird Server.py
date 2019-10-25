@@ -78,7 +78,7 @@ def create_new_account(conn):
     incoming_career = conn.recv(1024) 
     incoming_career = incoming_career.decode()
 
-    incoming_sports = conn.recv(1024) 
+    incoming_sports = conn.recv(1024)   #changed to traveling in the excel file
     incoming_sports = incoming_sports.decode() 
 
     incoming_football = conn.recv(1024) 
@@ -215,95 +215,95 @@ def view_profile(conn, s_name):
             username = sheet.cell(row=i + 1, column=2).value
             username = str(username)
             conn.send(username.encode()) 
-            
+            time.sleep(.00001)
             password = sheet.cell(row=i + 1, column=3).value
             password = str(password)
             conn.send(password.encode())
-            
+            time.sleep(.00001)
             fname = sheet.cell(row=i + 1, column=4).value
             fname = str(fname)
             conn.send(fname.encode())
-            
+            time.sleep(.00001)
             lname = sheet.cell(row=i + 1, column=5).value
             lname = str(lname)
             conn.send(lname.encode())
-            
+            time.sleep(.00001)
             gender = sheet.cell(row=i + 1, column=6).value
             gender = str(gender)
             conn.send(gender.encode())
-            
+            time.sleep(.00001)
             interest = sheet.cell(row=i + 1, column=7).value
             interest = str(interest)
             conn.send(interest.encode())
-            
+            time.sleep(.00001)
             age = sheet.cell(row=i + 1, column=8).value
             age = str(age)
             conn.send(age.encode()) 
-            
+            time.sleep(.00001)
             child = sheet.cell(row=i + 1, column=9).value
             child = str(child)
             conn.send(child.encode())
-            
+            time.sleep(.00001)
             ethnic = sheet.cell(row=i + 1, column=10).value
             ethnic = str(ethnic)
             conn.send(ethnic.encode())
-            
+            time.sleep(.00001)
             religion = sheet.cell(row=i + 1, column=11).value
             religion = str(religion)
             conn.send(religion.encode())
-            
+            time.sleep(.00001)
             school = sheet.cell(row=i + 1, column=12).value
             school = str(school)
             conn.send(school.encode())
-            
+            time.sleep(.00001)
             career = sheet.cell(row=i + 1, column=13).value
             career = str(career)
             conn.send(career.encode())
-            
+            time.sleep(.00001)
             sports = sheet.cell(row=i + 1, column=14).value
             sports = str(sports)   
             conn.send(sports.encode())
-            
+            time.sleep(.00001)
             football = sheet.cell(row=i + 1, column=15).value
             football = str(football)
             conn.send(football.encode())
-            
+            time.sleep(.00001)
             baseball = sheet.cell(row=i + 1, column=16).value
             baseball = str(baseball)
             conn.send(baseball.encode())
-            
+            time.sleep(.00001)
             basketball = sheet.cell(row=i + 1, column=17).value
             basketball = str(basketball)
             conn.send(basketball.encode())
-            
+            time.sleep(.00001)
             soccer = sheet.cell(row=i + 1, column=18).value
             soccer = str(soccer)
             conn.send(soccer.encode())
-            
+            time.sleep(.00001)
             other = sheet.cell(row=i + 1, column=19).value
             other = str(other)
             conn.send(other.encode())
-            
+            time.sleep(.00001)
             movies = sheet.cell(row=i + 1, column=20).value
             movies = str(movies)
             conn.send(movies.encode())
-            
+            time.sleep(.00001)
             music = sheet.cell(row=i + 1, column=21).value
             music = str(music)
             conn.send(music.encode())
-            
+            time.sleep(.00001)
             dance = sheet.cell(row=i + 1, column=22).value
             dance = str(dance)
             conn.send(dance.encode())
-            
+            time.sleep(.00001)
             social = sheet.cell(row=i + 1, column=23).value
             social = str(social)
             conn.send(social.encode())
-            
+            time.sleep(.00001)
             reading = sheet.cell(row=i + 1, column=24).value
             reading = str(reading)
             conn.send(reading.encode())
-            
+            time.sleep(.00001)
             bio =sheet.cell(row=i + 1, column=25).value
             bio = str(bio)
             conn.send(bio.encode())

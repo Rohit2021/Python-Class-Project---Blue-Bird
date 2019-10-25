@@ -50,8 +50,8 @@ def print_profile():
     incoming_career = s.recv(1024) 
     incoming_career = incoming_career.decode()
 
-    incoming_sports = s.recv(1024) 
-    incoming_sports = incoming_sports.decode() 
+    incoming_traveling = s.recv(1024) 
+    incoming_traveling = incoming_traveling.decode() 
 
     incoming_football = s.recv(1024) 
     incoming_football = incoming_football.decode()
@@ -86,9 +86,91 @@ def print_profile():
     incoming_bio = s.recv(1024) 
     incoming_bio = incoming_bio.decode()
 
-    print(incoming_bio)
+    print("Name:",incoming_fname,incoming_lname,"\n")
 
+    if (incoming_gender == "2"):
+        print("Gender: Male\n")
+    else:
+        print("Gender: Female\n")
 
+    if (incoming_interest == "2"):
+        print("Interested In: Men\n")
+    else:
+        print("Interested In: Women\n")
+
+    print("Age:",incoming_age,"\n")
+
+    if (incoming_child == "2"):
+        print("Has Children?: Yes\n")
+    else:
+        print("Has Children?: No\n")    
+
+    print("Ethnic Background:",incoming_ethnic,"\n")
+
+    print("Religion:",incoming_religion,"\n")
+
+    print("Highest Level Of Education:",incoming_school,"\n")
+
+    print("Occupation:",incoming_career,"\n")
+
+    if (incoming_traveling == "2"):
+        print("* Enjoys Traveling?: Yes")
+    else:
+        print("* Enjoys Traveling?: No")
+
+    if (incoming_football == "2"):
+        print("* Enjoys Football?: Yes")
+    else:
+        print("* Enjoys Football?: No")
+
+    if (incoming_baseball == "2"):
+        print("* Enjoys Baseball?: Yes")
+    else:
+        print("* Enjoys Baseball?: No")
+
+    if (incoming_basketball == "2"):
+        print("* Enjoys Basketball?: Yes")
+    else:
+        print("* Enjoys Basketball?: No")
+
+    if (incoming_soccer == "2"):
+        print("* Enjoys Soccer?: Yes")
+    else:
+        print("* Enjoys Soccer?: No")
+
+    if (incoming_other == "2"):
+        print("* Enjoys Any Other Sports?: Yes")
+    else:
+        print("* Enjoys Any Other Sports?: No")
+
+    if (incoming_movies == "2"):
+        print("* Enjoys Movies?: Yes")
+    else:
+        print("* Enjoys Movies?: No")
+
+    if (incoming_music == "2"):
+        print("* Enjoys Music?: Yes")
+    else:
+        print("* Enjoys Music?: No")
+
+    if (incoming_dance == "2"):
+        print("* Enjoys Dancing?: Yes")
+    else:
+        print("* Enjoys Dancing?: No")
+
+    if (incoming_social == "2"):
+        print("* Enjoys Social Media?: Yes")
+    else:
+        print("* Enjoys Social Media?: No\n")
+
+    if (incoming_reading == "2"):
+        print("* Enjoys Reading?: Yes")
+    else:
+        print("* Enjoys Reading?: No")
+
+    print("\nGeneral Bio:", incoming_bio, "\nEnter Any Key To Exit!")
+    exit = input(str(""))
+    
 def header():
     print("""              ██████╗ ██╗     ██╗   ██╗███████╗    ██████╗ ██╗██████╗ ██████╗ 
               ██╔══██╗██║     ██║   ██║██╔════╝    ██╔══██╗██║██╔══██╗██╔══██╗ 
@@ -160,7 +242,7 @@ def create_account():    #informs server that there is a need to create a new ac
     s.send(set_career)
 
     cls2()
-    set_sports = input(str("\nDo you like sports? No('1') or Yes('2') : "))
+    set_sports = input(str("\nDo you like traveling to new places? No('1') or Yes('2') : "))
     set_sports = set_sports.encode()
     s.send(set_sports)
 
@@ -240,6 +322,7 @@ def inMessage():
         incoming_message = incoming_message.decode()
         if (incoming_message == "start print_profile"):
             print_profile()
+            cls()
         else:
             print(incoming_message,"\n")
 
@@ -265,6 +348,7 @@ def cls3():  #for profile function
     os.system('cls' if os.name=='nt' else 'clear')
     header()
 
+    
 header()
 login = input(str("\n\n                      Create a new account('1') or Login('2'): "))
 if (login == "1"):
