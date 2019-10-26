@@ -13,6 +13,27 @@ host = "127.0.0.1"
 port = 9000
 s.connect((host,port))
 
+def options():
+    print("                                         Options Menu:\n")
+    print("* About Us('1')\n")
+    print("\n* Reset Password('2')\n")
+    print("\n* Reset Profile('3')\n\n(Hit Any Key To Start)")
+    x = input(str("Pick an option: "))
+    x = x.encode()
+    s.send(x)
+    y = s.recv(1024)
+    y = y.decode()
+    if(y == "one"):
+        print("\n                                          About Us:\n")
+        print("    We provide a revolutionary new dating service that will allow users to view various different interests of other users before being matched with them. Our agency took a long hard look at all the other dating services on the market, andwere disappointed at how superficial they all were. This prompted the launch of this new platform.")
+        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    else:
+        print("\nInvalid Option!")
+    #if(y == "two"):
+     #   print("\n                           Password Reset\n")
+    print("\n(Hit Any Key To Exit)")
+    exit = input(str(""))
+              
 def search():
     cls3()
     username = input(str("Enter a username: "))
@@ -26,7 +47,7 @@ def search():
         incoming_message = incoming_message.decode()
         print_profile()
     else:
-        print("\nInvalid Username(Hit Any Key To Exit)")
+        print("\nInvalid Username!\n(Hit Any Key To Exit)")
     exit = input(str(""))
     
     
@@ -343,6 +364,9 @@ def inMessage():
         elif (incoming_message == "start search function"):
             search()
             cls()
+        elif (incoming_message == "start options function"):
+            options()
+            cls()
         else:
             print(incoming_message,"\n")
 
@@ -357,7 +381,7 @@ def outMessage():           #Constantly allows for messages to be sent from clie
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
     header()
-    print("\n   MY PROFILE('1')      MESSAGES('2')      MATCH ME('3')      SEARCH('4')      OPTIONS('5)\n");
+    print("\n   MY PROFILE('1')      MESSAGES('2')      MATCH ME('3')      SEARCH('4')      OPTIONS('5')\n");
 
 def cls2():  #only for the create account function
     os.system('cls' if os.name=='nt' else 'clear')

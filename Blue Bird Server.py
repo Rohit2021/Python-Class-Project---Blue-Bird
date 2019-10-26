@@ -40,7 +40,16 @@ def bind_socket():      #binds socket
 
 create_socket()
 bind_socket()
-    
+
+def options(conn, username):
+    print("\n\n\napppless")
+    response = ("start options function")
+    conn.send(response.encode('utf-8'))
+    incoming_message = conn.recv(1024) 
+    incoming_message = incoming_message.decode()
+    if (incoming_message == "1"):
+        response = ("one")
+        conn.send(response.encode('utf-8'))
 
 def create_new_account(conn):
     incoming_username = conn.recv(1024) 
@@ -349,7 +358,8 @@ def console(conn, s_name):      #Allows clients to enter in commands to navigate
         if incoming_message == "4":
             search(conn)
 
-        #if incoming_message == "5":
+        if incoming_message == "5":
+            options(conn, s_name)
         
         if incoming_message == "list":
             print("\nListing connections ...\n",Names)
