@@ -17,7 +17,8 @@ def options():
     print("                                         Options Menu:\n")
     print("* About Us('1')\n")
     print("\n* Reset Password('2')\n")
-    print("\n* Reset Profile('3')\n\n(Hit 'Enter' To Start)")
+    print("\n* Reset Profile('3')\n")
+    print("\n* Report Issue('4')\n(Hit 'Enter' To Start)")
     x = input(str("Pick an option: "))
     x = x.encode()
     s.send(x)
@@ -26,7 +27,9 @@ def options():
     if(y == "one"):
         print("\n                                          About Us:\n")
         print("    We provide a revolutionary new dating service that will allow users to view various different interests of other users before being matched with them. Our agency took a long hard look at all the other dating services on the market, andwere disappointed at how superficial they all were. This prompted the launch of this new platform.")
-        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+        print("\n    Our mission is to find singles from all walks of life to find the type of relationship that they desire. We help people connect and create new memories. Whether you are looking for something causal or looking to take the next big step, Blue Bird will be here for everyone!")
+        print("\n    Blue Bird gives singles the ability to express themselves through multiple match makingselections. Profiles can include pictures, as well as user preferences and hobbies. When matched witha nother user, you can instantly look at your match’s photos and be able to read your match’s bio.Privacy is also very important to us. All user’s personal information will be anonymous unless it is willingly shared. Also, to maintain our integrity, any content that violates our guidelines will be takendown.")
+        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     elif(y == "two"):
         print("\n(Hit 'Enter' To Start)")
         password = input(str("Enter in your new password:"))
@@ -34,7 +37,6 @@ def options():
         s.send(password)
         print("\nPassword Has Been Reset")
     elif(y == "three"):
-        
         set_firstname = input(str("\nWhat's your first name?: "))
         set_firstname = set_firstname.encode()
         s.send(set_firstname)
@@ -144,6 +146,11 @@ def options():
         set_bio = set_bio.encode()
         s.send(set_bio)
         print("\nProfile Updated")
+    elif(y == "four"):
+        message = input(str("\nEnter your concerns:"))
+        message = message.encode()
+        s.send(message)
+        print("message sent!, please wait as we resolve your issue")
     else:
         print("\nInvalid Option!")
     #if(y == "two"):

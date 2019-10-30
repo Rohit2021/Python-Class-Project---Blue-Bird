@@ -156,7 +156,22 @@ def options(conn, username):
                 sheet.cell(row=i + 1, column=23, value=incoming_social)
                 sheet.cell(row=i + 1, column=24, value=incoming_reading)
                 sheet.cell(row=i + 1, column=25, value=incoming_bio)
-
+    if (incoming_message == "4"):
+        xfile2= openpyxl.load_workbook('Issues.xlsx')
+        sheet2 = xfile2.get_sheet_by_name('Sheet1')
+        response = ("four")
+        conn.send(response.encode('utf-8'))
+        message = conn.recv(1024) 
+        message = message.decode()
+        for i in range(1000):
+            first = sheet2.cell(row = i + 1,column=1).value
+            if (first != 1):
+                sheet2.cell(row=i + 1, column=1, value=1)
+                sheet2.cell(row=i + 1, column=2, value=message)
+                sheet2.cell(row=i + 1, column=3, value=username)
+                xfile2.save('Issues.xlsx')
+                break
+            
     xfile.save('Users.xlsx')
         
 
