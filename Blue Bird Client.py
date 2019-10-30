@@ -17,7 +17,7 @@ def options():
     print("                                         Options Menu:\n")
     print("* About Us('1')\n")
     print("\n* Reset Password('2')\n")
-    print("\n* Reset Profile('3')\n\n(Hit Any Key To Start)")
+    print("\n* Reset Profile('3')\n\n(Hit 'Enter' To Start)")
     x = input(str("Pick an option: "))
     x = x.encode()
     s.send(x)
@@ -27,11 +27,128 @@ def options():
         print("\n                                          About Us:\n")
         print("    We provide a revolutionary new dating service that will allow users to view various different interests of other users before being matched with them. Our agency took a long hard look at all the other dating services on the market, andwere disappointed at how superficial they all were. This prompted the launch of this new platform.")
         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    elif(y == "two"):
+        print("\n(Hit 'Enter' To Start)")
+        password = input(str("Enter in your new password:"))
+        password = password.encode()
+        s.send(password)
+        print("\nPassword Has Been Reset")
+    elif(y == "three"):
+        
+        set_firstname = input(str("\nWhat's your first name?: "))
+        set_firstname = set_firstname.encode()
+        s.send(set_firstname)
+
+        
+        set_lastname = input(str("\nWhat's your last name?: "))
+        set_lastname = set_lastname.encode()
+        s.send(set_lastname)
+
+        
+        set_gender = input(str("\nWhat's your gender? Female('1') or Male('2') : "))
+        set_gender = set_gender.encode()
+        s.send(set_gender)
+
+        
+        set_interest = input(str("\nAre you interested in Women('1') or Men('2')? : "))
+        set_interest = set_interest.encode()
+        s.send(set_interest)
+
+        
+        set_age = input(str("\nWhat's your age? Examples: '23' or '35' : "))
+        set_age = set_age.encode()
+        s.send(set_age)
+
+        
+        set_child = input(str("\nDo you have children? No('1') or Yes('2') : "))
+        set_child = set_child.encode()
+        s.send(set_child)
+
+        
+        set_ethnic = input(str("\nWhat's your ethnic background? \nExamples: Caucasian, African-American, Asian, etc : "))
+        set_ethnic = set_ethnic.encode()
+        s.send(set_ethnic)
+
+        
+        set_religion = input(str("\nWhat's your religion? \nExamples: Christianity, Islam, Hinduism, Atheism, etc: "))
+        set_religion = set_religion.encode()
+        s.send(set_religion)
+
+        
+        set_school = input(str("\nWhat's your highest level of education? : "))
+        set_school = set_school.encode()
+        s.send(set_school)
+
+        
+        set_career = input(str("\nWhat's your occupation? : "))
+        set_career = set_career.encode()
+        s.send(set_career)
+
+        
+        set_sports = input(str("\nDo you like traveling to new places? No('1') or Yes('2') : "))
+        set_sports = set_sports.encode()
+        s.send(set_sports)
+
+        
+        set_football = input(str("\nDo you like football? No('1') or Yes('2') : "))
+        set_football = set_football.encode()
+        s.send(set_football)
+
+        
+        set_baseball = input(str("\nDo you like baseball? No('1') or Yes('2') : "))
+        set_baseball = set_baseball.encode()
+        s.send(set_baseball)
+
+        
+        set_basketball = input(str("\nDo you like basketball? No('1') or Yes('2') : "))
+        set_basketball = set_basketball.encode()
+        s.send(set_basketball)
+    
+        
+        set_soccer = input(str("\nDo you like soccer? No('1') or Yes('2') : "))
+        set_soccer = set_soccer.encode()
+        s.send(set_soccer)
+
+        
+        set_other = input(str("\nDo you like any other sport? No('1') or Yes('2') : "))
+        set_other = set_other.encode()
+        s.send(set_other)
+
+        
+        set_movies = input(str("\nDo you like movies? No('1') or Yes('2') : "))
+        set_movies = set_movies.encode()
+        s.send(set_movies)
+
+        
+        set_music = input(str("\nDo you like music? No('1') or Yes('2') : "))
+        set_music = set_music.encode()
+        s.send(set_music)
+
+        
+        set_dance = input(str("\nDo you like dance? No('1') or Yes('2') : "))
+        set_dance = set_dance.encode()
+        s.send(set_dance)
+
+        
+        set_social = input(str("\nDo you like social media? No('1') or Yes('2') : "))
+        set_social = set_social.encode()
+        s.send(set_social)
+
+        
+        set_reading = input(str("\nDo you like reading? No('1') or Yes('2') : "))
+        set_reading = set_reading.encode()
+        s.send(set_reading)
+
+        
+        set_bio = input(str("\nPlease complete the form by writing a few sentences,\nwhich will be you profile's bio? : "))
+        set_bio = set_bio.encode()
+        s.send(set_bio)
+        print("\nProfile Updated")
     else:
         print("\nInvalid Option!")
     #if(y == "two"):
      #   print("\n                           Password Reset\n")
-    print("\n(Hit Any Key To Exit)")
+    print("\n(Hit 'Enter' To Exit)")
     exit = input(str(""))
               
 def search():
@@ -47,7 +164,7 @@ def search():
         incoming_message = incoming_message.decode()
         print_profile()
     else:
-        print("\nInvalid Username!\n(Hit Any Key To Exit)")
+        print("\nInvalid Username!\n(Hit 'Enter' To Exit)")
     exit = input(str(""))
     
     
@@ -206,7 +323,7 @@ def print_profile():
     else:
         print("* Enjoys Reading?: No")
 
-    print("\nGeneral Bio:", incoming_bio, "\n\n(Enter Any Key To Exit)")
+    print("\nGeneral Bio:", incoming_bio, "\n\n(Enter 'Enter' To Exit)")
     exit = input(str(""))
     
 def header():
@@ -391,7 +508,9 @@ def cls2():  #only for the create account function
 def cls3():  
     os.system('cls' if os.name=='nt' else 'clear') #only for search function
     header()
-    print("\n                          Search By Username(Hit Any Key To Start)")
+    print("\n                          Search By Username(Hit 'Enter' To Start)")
+
+
 
     
 header()
