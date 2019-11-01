@@ -1,4 +1,4 @@
-import os
+﻿import os
 os.system('color 1f')
 import socket #adds socket library
 import sys
@@ -12,6 +12,11 @@ s = socket.socket()         #Defines Socket
 host = "127.0.0.1"
 port = 9000
 s.connect((host,port))
+
+def match():
+    incoming_message = s.recv(1024)
+    incoming_message = incoming_message.decode()
+    print_profile()
 
 def options():
     print("                                         Options Menu:\n")
@@ -490,6 +495,9 @@ def inMessage():
             cls()
         elif (incoming_message == "start options function"):
             options()
+            cls()
+        elif (incoming_message == "start matching function"):
+            match()
             cls()
         else:
             print(incoming_message,"\n")

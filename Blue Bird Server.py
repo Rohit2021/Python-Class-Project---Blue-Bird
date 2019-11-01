@@ -7,6 +7,7 @@ from queue import Queue
 import os
 import subprocess
 import openpyxl
+import random
 
 Clients = []
 Names = []
@@ -466,6 +467,39 @@ def search(conn):
     if (count == 0):
         message = str(("invalid"))
         conn.send(message.encode())
+
+def matching(conn, s_name):
+    message = str(("start matching function"))
+    conn.send(message.encode())
+    Men = []
+    Women = []
+    xfile = openpyxl.load_workbook('Users.xlsx')
+    sheet = xfile.get_sheet_by_name('Sheet1')
+    interest = " "
+    for i in range(1000):
+        username = sheet.cell(row = i + 2,column=2).value
+        interest_set = sheet.cell(row = i + 2,column=7).value
+        if (s_name == username):
+            interest = interest_set
+            break
+    for i in range(1000):
+        first = sheet.cell(row = i + 2,column=1).value
+        username = sheet.cell(row = i + 2,column=2).value 
+        gender = sheet.cell(row = i + 2,column=6).value
+        if(first != 1):
+            break
+        if(gender == "2"):
+            Men.append(username)
+        else:
+            Women.append(username)
+
+    if(interest == "2"):
+        name = random.choice(Men)
+        view_profile(conn, name)
+    else:
+        name = random.choice(Women)
+        view_profile(conn, name)
+        
     
     
 def console(conn, s_name):      #Allows clients to enter in commands to navigate interface
@@ -475,10 +509,12 @@ def console(conn, s_name):      #Allows clients to enter in commands to navigate
 
         if incoming_message == "1":
             view_profile(conn, s_name)
+            
         #if incoming_message == "2":
 
-        #if incoming_message == "3":
-        
+        if incoming_message == "3":
+            matching(conn, s_name)
+            
         if incoming_message == "4":
             search(conn)
 
