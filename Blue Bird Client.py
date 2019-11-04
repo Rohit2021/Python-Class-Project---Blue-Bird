@@ -17,6 +17,9 @@ def match():
     incoming_message = s.recv(1024)
     incoming_message = incoming_message.decode()
     print_profile()
+    accept = input(str("('2') to Add, ('1') to Ignore: "))
+    accept = accept.encode()
+    s.send(accept)
 
 def options():
     print("                                         Options Menu:\n")
@@ -335,7 +338,7 @@ def print_profile():
     else:
         print("* Enjoys Reading?: No")
 
-    print("\nGeneral Bio:", incoming_bio, "\n\n(Enter 'Enter' To Exit)")
+    print("\nGeneral Bio:", incoming_bio, "\n\n(Enter 'Enter' To Continue)")
     exit = input(str(""))
     
 def header():

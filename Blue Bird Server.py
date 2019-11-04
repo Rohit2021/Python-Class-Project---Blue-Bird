@@ -468,11 +468,27 @@ def search(conn):
         message = str(("invalid"))
         conn.send(message.encode())
 
+
+def matched_already(s_name, user):
+    xfile = openpyxl.load_workbook('Users.xlsx')
+    sheet = xfile.get_sheet_by_name('Sheet1')
+    for i in range(1000):
+        username = sheet.cell(row = i + 1,column=2).value
+        if (s_name == username):
+            for x in range(1000):
+                added = sheet.cell(row = i + 1,column=x + 26).value
+                if(added == user):
+                    return 1
+                elif(added == None):
+                    return 0
+
+
 def matching(conn, s_name):
     message = str(("start matching function"))
     conn.send(message.encode())
     Men = []
     Women = []
+    name = ""
     xfile = openpyxl.load_workbook('Users.xlsx')
     sheet = xfile.get_sheet_by_name('Sheet1')
     interest = " "
@@ -486,11 +502,12 @@ def matching(conn, s_name):
         first = sheet.cell(row = i + 2,column=1).value
         username = sheet.cell(row = i + 2,column=2).value 
         gender = sheet.cell(row = i + 2,column=6).value
+        already = matched_already(s_name, username)
         if(first != 1):
             break
-        if(gender == "2"):
+        if(gender == "2" and s_name != username and already == 0):
             Men.append(username)
-        else:
+        elif(s_name != username and already == 0):
             Women.append(username)
 
     if(interest == "2"):
@@ -499,8 +516,26 @@ def matching(conn, s_name):
     else:
         name = random.choice(Women)
         view_profile(conn, name)
-        
-    
+
+    accept = conn.recv(1024) 
+    accept = accept.decode()
+
+    if(accept == "2"):
+        for i in range(1000):
+            username = sheet.cell(row = i + 1,column=2).value
+            if (s_name == username):
+                for x in range(100):
+                    added = sheet.cell(row = i + 1,column=x + 26).value
+                    if(added == None):
+                        sheet.cell(row=i + 1, column=x + 26, value=name)
+                        xfile.save('Users.xlsx')
+                        break
+                break
+
+def message_menu(conn, s_name):
+    print("placeholder")
+
+            
     
 def console(conn, s_name):      #Allows clients to enter in commands to navigate interface
     while True:
@@ -510,7 +545,8 @@ def console(conn, s_name):      #Allows clients to enter in commands to navigate
         if incoming_message == "1":
             view_profile(conn, s_name)
             
-        #if incoming_message == "2":
+        if incoming_message == "2":
+            message_menu(conn, s_name)
 
         if incoming_message == "3":
             matching(conn, s_name)
