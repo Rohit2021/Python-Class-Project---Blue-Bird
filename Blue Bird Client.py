@@ -13,6 +13,26 @@ host = "127.0.0.1"
 port = 9000
 s.connect((host,port))
 
+def messaging():
+    print("\n                                     Blue Bird Messsenger\n                                    (Hit 'Enter' To Start)")
+    message = input(str("View Inbox('1'), View My Following List('2'), Exit('3'): "))
+    cls()
+    if(message == "2"):
+        message = message.encode()
+        s.send(message)
+        message = s.recv(1024)
+        message = message.decode()
+        message2 = s.recv(1024)
+        message2 = message2.decode()
+        print("\n\nYou are following ", message2, " users\n")
+        print("Following List: ", message)
+        print("\n(Hit 'Enter' To Exit)")
+        exit = input(str(""))
+    else:
+        message = message.encode()
+        s.send(message)
+    
+
 def match():
     incoming_message = s.recv(1024)
     incoming_message = incoming_message.decode()
@@ -28,6 +48,7 @@ def options():
     print("\n* Reset Profile('3')\n")
     print("\n* Report Issue('4')\n(Hit 'Enter' To Start)")
     x = input(str("Pick an option: "))
+    print("(Hit 'Enter' To Continue)")
     x = x.encode()
     s.send(x)
     y = s.recv(1024)
@@ -47,106 +68,127 @@ def options():
     elif(y == "three"):
         set_firstname = input(str("\nWhat's your first name?: "))
         set_firstname = set_firstname.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_firstname)
 
         
         set_lastname = input(str("\nWhat's your last name?: "))
         set_lastname = set_lastname.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_lastname)
 
         
         set_gender = input(str("\nWhat's your gender? Female('1') or Male('2') : "))
         set_gender = set_gender.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_gender)
 
         
         set_interest = input(str("\nAre you interested in Women('1') or Men('2')? : "))
         set_interest = set_interest.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_interest)
 
         
         set_age = input(str("\nWhat's your age? Examples: '23' or '35' : "))
         set_age = set_age.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_age)
 
         
         set_child = input(str("\nDo you have children? No('1') or Yes('2') : "))
         set_child = set_child.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_child)
 
         
         set_ethnic = input(str("\nWhat's your ethnic background? \nExamples: Caucasian, African-American, Asian, etc : "))
         set_ethnic = set_ethnic.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_ethnic)
 
         
         set_religion = input(str("\nWhat's your religion? \nExamples: Christianity, Islam, Hinduism, Atheism, etc: "))
         set_religion = set_religion.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_religion)
 
         
         set_school = input(str("\nWhat's your highest level of education? : "))
         set_school = set_school.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_school)
 
         
         set_career = input(str("\nWhat's your occupation? : "))
         set_career = set_career.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_career)
 
         
         set_sports = input(str("\nDo you like traveling to new places? No('1') or Yes('2') : "))
         set_sports = set_sports.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_sports)
 
         
         set_football = input(str("\nDo you like football? No('1') or Yes('2') : "))
         set_football = set_football.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_football)
 
         
         set_baseball = input(str("\nDo you like baseball? No('1') or Yes('2') : "))
         set_baseball = set_baseball.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_baseball)
 
         
         set_basketball = input(str("\nDo you like basketball? No('1') or Yes('2') : "))
         set_basketball = set_basketball.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_basketball)
     
         
         set_soccer = input(str("\nDo you like soccer? No('1') or Yes('2') : "))
         set_soccer = set_soccer.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_soccer)
 
         
         set_other = input(str("\nDo you like any other sport? No('1') or Yes('2') : "))
         set_other = set_other.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_other)
 
         
         set_movies = input(str("\nDo you like movies? No('1') or Yes('2') : "))
         set_movies = set_movies.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_movies)
 
         
         set_music = input(str("\nDo you like music? No('1') or Yes('2') : "))
         set_music = set_music.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_music)
 
         
         set_dance = input(str("\nDo you like dance? No('1') or Yes('2') : "))
         set_dance = set_dance.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_dance)
 
         
         set_social = input(str("\nDo you like social media? No('1') or Yes('2') : "))
         set_social = set_social.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_social)
 
         
         set_reading = input(str("\nDo you like reading? No('1') or Yes('2') : "))
         set_reading = set_reading.encode()
+        print("(Hit 'Enter' To Continue)")
         s.send(set_reading)
 
         
@@ -501,6 +543,9 @@ def inMessage():
             cls()
         elif (incoming_message == "start matching function"):
             match()
+            cls()
+        elif (incoming_message == "start messaging function"):
+            messaging()
             cls()
         else:
             print(incoming_message,"\n")

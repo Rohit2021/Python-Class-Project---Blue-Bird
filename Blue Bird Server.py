@@ -533,7 +533,34 @@ def matching(conn, s_name):
                 break
 
 def message_menu(conn, s_name):
-    print("placeholder")
+    message = str(("start messaging function"))
+    conn.send(message.encode())
+    xfile = openpyxl.load_workbook('Users.xlsx')
+    sheet = xfile.get_sheet_by_name('Sheet1')
+    info = conn.recv(1024) 
+    info = info.decode()
+    added_users = []
+    counter = 0
+    if(info == "1"):
+        print("placeholder")
+    elif(info == "2"):
+        for i in range(1000):
+            username = sheet.cell(row = i + 1,column=2).value
+            if (s_name == username):
+                for x in range(100):
+                    added = sheet.cell(row = i + 1,column=x + 26).value
+                    if(added == None):
+                        break       
+                    added_users.append(added)
+                    counter+=1
+                break
+        message = str(added_users)
+        conn.send(message.encode())
+        time.sleep(.00001)
+        message = str(counter)
+        conn.send(message.encode())
+
+ 
 
             
     
