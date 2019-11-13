@@ -660,18 +660,29 @@ def clientthread(conn):   #Takes the name of the newly entered client
         if (s_account == "1"):      #helps to create new account
             create_new_account(conn)
 
-        s_name = conn.recv(1024)
-        s_name = s_name.decode ()
+        while 1:
+            s_name = conn.recv(1024)
+            s_name = s_name.decode ()
 
-        s_password = conn.recv(1024)
-        s_password = s_password.decode ()
+            s_password = conn.recv(1024)
+            s_password = s_password.decode ()
 
-        validate_login = login(s_name, s_password)
+            validate_login = login(s_name, s_password)
 
-        if (validate_login == 1):
-            Names.append(s_name) 
-            print(s_name," has joined")
-            console(conn, s_name)
+            if (validate_login == 1):
+                break
+            else:
+                message = str(("invalid login"))  #informs client that an incorrect login was entered
+                conn.send(message.encode())
+        
+            
+        
+        message = str(("valid login"))  #informs client that a correct login was entered
+        conn.send(message.encode())
+        Names.append(s_name) 
+        print(s_name," has joined")
+        console(conn, s_name)
+            
 
         #conn.send(alert.encode('utf-8'))
         #print(Names[x],"'s connection point is ", Clients[x])

@@ -41,7 +41,7 @@ def messaging():
         while 1:
             refresh()
             print("(Hit 'Enter' To Continue)")
-            message = input(str("Enter in a user to message: "))
+            message = input(str("Enter in a user to message(Enter 'exit' To Exit Messenger): "))
             message = message.encode()
             s.send(message)
             if(message == "exit"):                  #allows the user to exit the messenger
@@ -570,6 +570,7 @@ def send_name():
     s.send(name.encode())   #sends name to server
     s.send(password.encode())
 
+
 def inMessage():
     while 1:
         incoming_message = s.recv(1024)
@@ -633,6 +634,18 @@ t2 = threading.Thread(target=inMessage,)
 
 send_name()
 cls()
+while 1:
+    message = s.recv(1024) 
+    message = message.decode()
+    if(message == "valid login"):
+        print("\nLogin Successful!\n")
+        break
+    else:
+        cls()
+        print("\nInvalid Username Or Password (Please Try Again!)")
+        name = input(str("\nUsername: "))
+        password = input(str("\nPassword: "))
+        send_name()
 
 t1.start() 
 t2.start() 
