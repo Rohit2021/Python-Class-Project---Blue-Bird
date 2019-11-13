@@ -13,10 +13,51 @@ host = "127.0.0.1"
 port = 9000
 s.connect((host,port))
 
+def refresh():
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                             Inbox\n")
+    while 1:
+        message = s.recv(1024)
+        message = message.decode()
+        if(message == "stop"):
+            break
+        text = s.recv(1024)
+        text = text.decode()
+        user = s.recv(1024)
+        user = user.decode()
+        if (message == "sent by them"):
+            print(text, " - from", user, "\n") 
+        else:
+            print(text, " - sent to", user, "by you\n")
+            
+        
+
 def messaging():
     print("\n                                     Blue Bird Messsenger\n                                    (Hit 'Enter' To Start)")
-    message = input(str("View Inbox('1'), View My Following List('2'), Exit('3'): "))
+    message = input(str("Messenger('1'), View My Following List('2'), Exit('3'): "))
     cls()
+    if(message == "1"):
+        message = message.encode()
+        s.send(message)
+        while 1:
+            refresh()
+            print("(Hit 'Enter' To Continue)")
+            message = input(str("Enter in a user to message: "))
+            message = message.encode()
+            s.send(message)
+            if(message == "exit"):                  #allows the user to exit the messenger
+                break
+            message = s.recv(1024)
+            message = message.decode()
+            if(message == "valid"):
+                print("(Hit 'Enter' To Continue)")
+                message = input(str("\nEnter in a message: "))
+                message = message.encode()
+                s.send(message)
+            else:
+                print("Invalid Username\n(Hit 'Enter' To Exit)")
+                exit = input(str(""))
+                break
+                
     if(message == "2"):
         message = message.encode()
         s.send(message)
@@ -28,7 +69,8 @@ def messaging():
         print("Following List: ", message)
         print("\n(Hit 'Enter' To Exit)")
         exit = input(str(""))
-    else:
+
+    if(message != "1" and message != "2"):
         message = message.encode()
         s.send(message)
     

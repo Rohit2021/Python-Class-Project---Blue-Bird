@@ -541,8 +541,67 @@ def message_menu(conn, s_name):
     info = info.decode()
     added_users = []
     counter = 0
+    counter_inbox = 0
     if(info == "1"):
-        print("placeholder")
+        while 1:
+            for i in range(1000):
+                username = sheet.cell(row = i + 1,column=2).value
+                if (s_name == username):
+                    for x in range(10000):
+                        text = sheet.cell(row = i + 1,column=x + 250).value
+                        if(text == None):
+                            message = str(("stop"))
+                            conn.send(message.encode())
+                            break       
+                        time.sleep(.00001)
+                        conn.send(text.encode())
+                    break
+                
+                
+            
+            receiver = conn.recv(1024) 
+            receiver = receiver.decode()
+            if(receiver == "exit"):         #allows user to exit the messenger area
+                break
+            for i in range(1000):
+                username = sheet.cell(row = i + 1,column=2).value
+                if (receiver == username):
+                    message = str(("valid"))        #Checks to see if username entered by user is valid to receive a message
+                    conn.send(message.encode())
+                    counter+=1
+            if (counter == 0):
+                message = str(("invalid"))
+                conn.send(message.encode())
+                break
+            else:
+                message = conn.recv(1024) 
+                message = message.decode()
+                for i in range(1000):
+                    username = sheet.cell(row = i + 1,column=2).value
+                    if (receiver == username):
+                        for x in range(10000):
+                            inbox = sheet.cell(row = i + 1,column=x + 250).value
+                            if(inbox == None):
+                                sheet.cell(row=i + 1, column=x + 250, value="sent by them")
+                                sheet.cell(row=i + 1, column=x + 251, value=message)       #writes the message into the mailbox on the user receiving the message
+                                sheet.cell(row=i + 1, column=x + 252, value=s_name)
+                                xfile.save('Users.xlsx')
+                                break
+                        break
+                for i in range(1000):
+                    username = sheet.cell(row = i + 1,column=2).value
+                    if (s_name == username):
+                        for x in range(10000):
+                            inbox = sheet.cell(row = i + 1,column=x + 250).value
+                            if(inbox == None):
+                                sheet.cell(row=i + 1, column=x + 250, value="sent by you")
+                                sheet.cell(row=i + 1, column=x + 251, value=message)       #writes the message into the mailbox on the user sending the message
+                                sheet.cell(row=i + 1, column=x + 252, value=receiver)
+                                xfile.save('Users.xlsx')
+                                counter = 0
+                                break
+                        break
+            
     elif(info == "2"):
         for i in range(1000):
             username = sheet.cell(row = i + 1,column=2).value
@@ -559,6 +618,7 @@ def message_menu(conn, s_name):
         time.sleep(.00001)
         message = str(counter)
         conn.send(message.encode())
+
 
  
 
