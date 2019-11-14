@@ -657,6 +657,12 @@ def console(conn, s_name):      #Allows clients to enter in commands to navigate
         if incoming_message == "message":
             message(conn)
 
+def close_connection():
+    while True:
+        data = conn.recv(1024)
+        if len(data) == 0:
+            conn.close()
+    
 def clientthread(conn):   #Takes the name of the newly entered client
     while True:
         s_account = conn.recv(1024)
@@ -686,8 +692,14 @@ def clientthread(conn):   #Takes the name of the newly entered client
         conn.send(message.encode())
         Names.append(s_name) 
         print(s_name," has joined")
-        console(conn, s_name)
-            
+        t1 = threading.Thread(target=console(conn, s_name),) 
+        t2 = threading.Thread(target=close_connection(conn),)
+
+        t1.start() 
+        t2.start() 
+  
+        t1.join() 
+        t2.join()
 
         #conn.send(alert.encode('utf-8'))
         #print(Names[x],"'s connection point is ", Clients[x])
@@ -701,5 +713,6 @@ def accepting_connections():    #Accepts new connections and creates new threads
         
         Clients.append(conn)
         start_new_thread(clientthread, (conn,))
+
 
 accepting_connections()

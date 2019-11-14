@@ -84,7 +84,7 @@ def match():
     s.send(accept)
 
 def options():
-    print("                                         Options Menu:\n")
+    print("                                                Options Menu:\n")
     print("* About Us('1')\n")
     print("\n* Reset Password('2')\n")
     print("\n* Reset Profile('3')\n")
@@ -96,7 +96,7 @@ def options():
     y = s.recv(1024)
     y = y.decode()
     if(y == "one"):
-        print("\n                                          About Us:\n")
+        print("\n                                              About Us:\n")
         print("    We provide a revolutionary new dating service that will allow users to view various different interests of other users before being matched with them. Our agency took a long hard look at all the other dating services on the market, andwere disappointed at how superficial they all were. This prompted the launch of this new platform.")
         print("\n    Our mission is to find singles from all walks of life to find the type of relationship that they desire. We help people connect and create new memories. Whether you are looking for something causal or looking to take the next big step, Blue Bird will be here for everyone!")
         print("\n    Blue Bird gives singles the ability to express themselves through multiple match makingselections. Profiles can include pictures, as well as user preferences and hobbies. When matched witha nother user, you can instantly look at your match’s photos and be able to read your match’s bio.Privacy is also very important to us. All user’s personal information will be anonymous unless it is willingly shared. Also, to maintain our integrity, any content that violates our guidelines will be takendown.")
@@ -624,7 +624,7 @@ def cls3():
 
     
 header()
-login = input(str("\n\n                      Create a new account('1') or Login('2'): "))
+login = input(str("\n\n                              Create a new account('1') or Login('2'): "))
 if (login == "1"):
      create_account()
 else:
