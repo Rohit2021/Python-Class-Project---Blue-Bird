@@ -590,6 +590,10 @@ def inMessage():
         elif (incoming_message == "start messaging function"):
             messaging()
             cls()
+        elif (incoming_message == "start closing connection"):
+            print("\nGood Bye!(Hit 'Enter' To Close)")
+            s.close()
+            sys.exit("Good Bye!")
         else:
             print(incoming_message,"\n")
 

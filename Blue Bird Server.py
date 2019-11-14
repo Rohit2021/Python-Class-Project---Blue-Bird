@@ -643,6 +643,11 @@ def console(conn, s_name):      #Allows clients to enter in commands to navigate
 
         if incoming_message == "5":
             options(conn, s_name)
+
+        if incoming_message == "6":
+            message = str(("start closing connection"))
+            conn.send(message.encode())
+            conn.close()
         
         if incoming_message == "list":
             print("\nListing connections ...\n",Names)
