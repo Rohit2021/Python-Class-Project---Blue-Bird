@@ -426,12 +426,12 @@ def print_profile():
     exit = input(str(""))
     
 def header():
-    print("""              ██████╗ ██╗     ██╗   ██╗███████╗    ██████╗ ██╗██████╗ ██████╗ 
-              ██╔══██╗██║     ██║   ██║██╔════╝    ██╔══██╗██║██╔══██╗██╔══██╗ 
-              ██████╔╝██║     ██║   ██║█████╗      ██████╔╝██║██████╔╝██║  ██║
-              ██╔══██╗██║     ██║   ██║██╔══╝      ██╔══██╗██║██╔══██╗██║  ██║
-              ██████╔╝███████╗╚██████╔╝███████╗    ██████╔╝██║██║  ██║██████╔╝
-              ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝    ╚═════╝ ╚═╝╚═╝  ╚═╝╚═════╝ """)
+    print("""             ██████╗ ██╗     ██╗   ██╗███████╗    ██████╗  █████╗ ██╗   ██╗███████╗███╗   ██╗
+             ██╔══██╗██║     ██║   ██║██╔════╝    ██╔══██╗██╔══██╗██║   ██║██╔════╝████╗  ██║
+             ██████╔╝██║     ██║   ██║█████╗      ██████╔╝███████║██║   ██║█████╗  ██╔██╗ ██║
+             ██╔══██╗██║     ██║   ██║██╔══╝      ██╔══██╗██╔══██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║
+             ██████╔╝███████╗╚██████╔╝███████╗    ██║  ██║██║  ██║ ╚████╔╝ ███████╗██║ ╚████║
+             ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝    ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝""")
 
 def create_account():    #informs server that there is a need to create a new account
     s.send(login.encode())
@@ -604,7 +604,7 @@ def outMessage():           #Constantly allows for messages to be sent from clie
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
     header()
-    print("\n   MY PROFILE('1')      MESSAGES('2')      MATCH ME('3')      SEARCH('4')      OPTIONS('5')\n");
+    print("\nMY PROFILE('1')      MESSAGES('2')      MATCH ME('3')      SEARCH('4')      OPTIONS('5')      LOG OUT('6')\n");
 
 def cls2():  #only for the create account function
     os.system('cls' if os.name=='nt' else 'clear')
