@@ -88,7 +88,8 @@ def options():
     print("* About Us('1')\n")
     print("\n* Reset Password('2')\n")
     print("\n* Reset Profile('3')\n")
-    print("\n* Report Issue('4')\n(Hit 'Enter' To Start)")
+    print("\n* Report Issue('4')\n")
+    print("\n* Deactivate Account('5')\n(Hit 'Enter' To Start)")
     x = input(str("Pick an option: "))
     print("(Hit 'Enter' To Continue)")
     x = x.encode()
@@ -243,6 +244,10 @@ def options():
         message = message.encode()
         s.send(message)
         print("message sent!, please wait as we resolve your issue")
+    elif(y == "five"):
+        print("\nAccount deleted successful!\n")
+        s.close()
+        sys.exit("Good Bye!")
     else:
         print("\nInvalid Option!")
     #if(y == "two"):

@@ -172,7 +172,15 @@ def options(conn, username):
                 sheet2.cell(row=i + 1, column=3, value=username)
                 xfile2.save('Issues.xlsx')
                 break
-            
+    if (incoming_message == "5"):
+        for i in range(1000):
+            response = ("five")
+            conn.send(response.encode('utf-8'))
+            username_data = sheet.cell(row = i + 1,column=2).value
+            if (username == username_data):
+                sheet.delete_rows(i + 1)
+                break
+                
     xfile.save('Users.xlsx')
         
 
