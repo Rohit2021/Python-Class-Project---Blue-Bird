@@ -44,8 +44,6 @@ def messaging():
             message = input(str("Enter in a user to message(Enter 'exit' To Exit Messenger): "))
             message = message.encode()
             s.send(message)
-            if(message == "exit"):                  #allows the user to exit the messenger
-                break
             message = s.recv(1024)
             message = message.decode()
             if(message == "valid"):
@@ -53,6 +51,8 @@ def messaging():
                 message = input(str("\nEnter in a message: "))
                 message = message.encode()
                 s.send(message)
+            elif(message == "exit"): #allows the user to exit the messenger
+                break
             else:
                 print("Invalid Username\n(Hit 'Enter' To Exit)")
                 exit = input(str(""))
@@ -252,7 +252,7 @@ def options():
         print("\nInvalid Option!")
     #if(y == "two"):
      #   print("\n                           Password Reset\n")
-    print("\n(Hit 'Enter' To Exit)")
+    print("\n(Hit 'Enter' Twice To Exit)")
     exit = input(str(""))
               
 def search():
@@ -427,7 +427,7 @@ def print_profile():
     else:
         print("* Enjoys Reading?: No")
 
-    print("\nGeneral Bio:", incoming_bio, "\n\n(Enter 'Enter' To Continue)")
+    print("\nGeneral Bio:", incoming_bio, "\n\n(Enter 'Enter' Twice To Continue)")
     exit = input(str(""))
     
 def header():

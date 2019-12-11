@@ -570,7 +570,8 @@ def message_menu(conn, s_name):
             receiver = conn.recv(1024) 
             receiver = receiver.decode()
             if(receiver == "exit"):         #allows user to exit the messenger area
-                break
+                message = str(("exit"))
+                conn.send(message.encode())
             for i in range(1000):
                 username = sheet.cell(row = i + 1,column=2).value
                 if (receiver == username):
